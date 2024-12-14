@@ -1,0 +1,161 @@
+{
+  "name": "Test_CICD",
+  "description": "",
+  "version": 36,
+  "private": true,
+  "concurrency": 1,
+  "code": {
+    "number": 0,
+    "provider": "clock",
+    "name": "scheduled_event",
+    "as": "6350645b",
+    "title": null,
+    "description": "<span class=\"provider\">Trigger</span> every 5 minutes",
+    "keyword": "trigger",
+    "input": {
+      "time_unit": "minutes",
+      "trigger_every": "5"
+    },
+    "extended_input_schema": [
+      {
+        "control_type": "integer",
+        "default": "5",
+        "enforce_template_mode": true,
+        "extends_schema": true,
+        "hint": "Define repeating schedule. Enter whole numbers only.\n                        This field can be set to a minimum of 5 minutes.",
+        "label": "Trigger every",
+        "name": "trigger_every",
+        "optional": false,
+        "suffix": {
+          "text": "minutes"
+        },
+        "type": "string"
+      },
+      {
+        "control_type": "select",
+        "hint": "Select the timezone to use. Leave it blank to use <b>{{authUser.account_timezone}}</b>",
+        "label": "Timezone",
+        "name": "timezone",
+        "optional": true,
+        "pick_list": "timezone_id_global_pick_list",
+        "pick_list_connection_less": true,
+        "type": "string"
+      },
+      {
+        "control_type": "date_time",
+        "enforce_template_mode": true,
+        "extends_schema": true,
+        "hint": "Set date and time to start or leave blank to start immediately. <b>Once recipe has been run or tested, value cannot be changed.</b>",
+        "label": "Start after",
+        "name": "start_after",
+        "optional": true,
+        "parse_output": "date_time_conversion",
+        "since_field": true,
+        "type": "date_time",
+        "ignore_timezone": true,
+        "render_input": "date_time_conversion"
+      }
+    ],
+    "block": [
+      {
+        "number": 1,
+        "provider": "cicd_for_workato_v3_connector_865610_1729896062",
+        "name": "build_package_async",
+        "as": "adc6182d",
+        "title": null,
+        "description": "Build <span class=\"provider\">package</span> from Workato <span class=\"provider\">Environment</span>",
+        "keyword": "action",
+        "dynamicPickListSelection": {
+          "deployment_mode": "Projects (Environments)",
+          "workato_env": "DEV",
+          "workato_environment": "DEV"
+        },
+        "toggleCfg": {
+          "deployment_mode": true,
+          "workato_environment": true
+        },
+        "input": {
+          "deployment_mode": "projects",
+          "id": "22341211",
+          "description": "test1",
+          "workato_environment": "DEV"
+        },
+        "extended_input_schema": [
+          {
+            "control_type": "select",
+            "label": "Deployment Mode",
+            "name": "deployment_mode",
+            "optional": false,
+            "pick_list": "deployment_mode",
+            "toggle_field": {
+              "name": "deployment_mode",
+              "label": "Deployment Mode",
+              "type": "string",
+              "control_type": "text",
+              "optional": false,
+              "toggle_hint": "Use Deployment Mode"
+            },
+            "toggle_hint": "Select from list",
+            "type": "string"
+          },
+          {
+            "control_type": "select",
+            "label": "Workato Environment",
+            "name": "workato_environment",
+            "optional": false,
+            "pick_list": "environments",
+            "toggle_field": {
+              "name": "workato_environment",
+              "label": "Workato Environment Reference",
+              "type": "string",
+              "control_type": "text",
+              "optional": false,
+              "toggle_hint": "Use Environment Name"
+            },
+            "toggle_hint": "Select from list",
+            "type": "string"
+          },
+          {
+            "control_type": "text",
+            "hint": "Source manifest or project/folder ID to build.",
+            "label": "ID",
+            "name": "id",
+            "optional": false,
+            "type": "string"
+          },
+          {
+            "control_type": "text",
+            "hint": "Release description for documentation.",
+            "label": "Description",
+            "name": "description",
+            "ngIf": "input.deployment_mode == 'projects'",
+            "optional": true,
+            "type": "string"
+          }
+        ],
+        "uuid": "5cdb641b-636d-42d3-8ad4-92df04a87f94"
+      }
+    ],
+    "uuid": "b4af5479-d4bc-4b9d-9ffb-d019ebb46c88",
+    "unfinished": false
+  },
+  "config": [
+    {
+      "keyword": "application",
+      "provider": "cicd_for_workato_v3_connector_865610_1729896062",
+      "skip_validation": false,
+      "account_id": {
+        "zip_name": "Test_RLCM_Suhas/Connections/cicd_for_workato_rlcm.connection.json",
+        "name": "CICD for Workato rlcm",
+        "folder": "Test_RLCM_Suhas/Connections",
+        "custom": true
+      }
+    },
+    {
+      "keyword": "application",
+      "provider": "clock",
+      "skip_validation": false,
+      "account_id": null
+    }
+  ]
+}
