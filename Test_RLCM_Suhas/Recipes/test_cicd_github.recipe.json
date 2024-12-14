@@ -1,0 +1,95 @@
+{
+  "name": "test cicd github",
+  "description": "",
+  "version": 2,
+  "private": true,
+  "concurrency": 1,
+  "code": {
+    "number": 0,
+    "provider": "clock",
+    "name": "scheduled_event",
+    "as": "541241b2",
+    "title": null,
+    "description": "<span class=\"provider\">Trigger</span> every 5 minutes",
+    "keyword": "trigger",
+    "input": {
+      "time_unit": "minutes",
+      "trigger_every": "5"
+    },
+    "extended_input_schema": [
+      {
+        "control_type": "integer",
+        "default": "5",
+        "enforce_template_mode": true,
+        "extends_schema": true,
+        "hint": "Define repeating schedule. Enter whole numbers only.\n                        This field can be set to a minimum of 5 minutes.",
+        "label": "Trigger every",
+        "name": "trigger_every",
+        "optional": false,
+        "suffix": {
+          "text": "minutes"
+        },
+        "type": "string"
+      },
+      {
+        "control_type": "select",
+        "hint": "Select the timezone to use. Leave it blank to use <b>{{authUser.account_timezone}}</b>",
+        "label": "Timezone",
+        "name": "timezone",
+        "optional": true,
+        "pick_list": "timezone_id_global_pick_list",
+        "pick_list_connection_less": true,
+        "type": "string"
+      },
+      {
+        "control_type": "date_time",
+        "enforce_template_mode": true,
+        "extends_schema": true,
+        "hint": "Set date and time to start or leave blank to start immediately. <b>Once recipe has been run or tested, value cannot be changed.</b>",
+        "label": "Start after",
+        "name": "start_after",
+        "optional": true,
+        "parse_output": "date_time_conversion",
+        "since_field": true,
+        "type": "date_time",
+        "ignore_timezone": true,
+        "render_input": "date_time_conversion"
+      }
+    ],
+    "block": [
+      {
+        "number": 1,
+        "provider": "cicd_for_git_hub_v3_connector_865610_1730209886",
+        "name": "create_branch_ref",
+        "as": "f14539a2",
+        "keyword": "action",
+        "input": {
+          "repo_name": "workatotest",
+          "branch_name": "dev"
+        },
+        "uuid": "3634173b-c6c9-4e74-b9fe-7f914d285315"
+      }
+    ],
+    "uuid": "96909f86-076b-4fb1-a276-ec408e51c92d",
+    "unfinished": false
+  },
+  "config": [
+    {
+      "keyword": "application",
+      "provider": "clock",
+      "skip_validation": false,
+      "account_id": null
+    },
+    {
+      "keyword": "application",
+      "provider": "cicd_for_git_hub_v3_connector_865610_1730209886",
+      "skip_validation": false,
+      "account_id": {
+        "zip_name": "Test_RLCM_Suhas/Connections/cicd_for_github_v3_suhas.connection.json",
+        "name": "CICD for GitHub V3 Suhas",
+        "folder": "Test_RLCM_Suhas/Connections",
+        "custom": true
+      }
+    }
+  ]
+}
