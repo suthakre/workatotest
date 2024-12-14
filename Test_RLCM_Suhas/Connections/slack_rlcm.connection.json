@@ -1,0 +1,6 @@
+{
+  "name": "Slack_RLCM",
+  "provider": "slack",
+  "secure_gateway_tunnel_name": null,
+  "root_folder": false
+}
