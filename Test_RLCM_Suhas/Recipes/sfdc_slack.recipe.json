@@ -1,0 +1,98 @@
+{
+  "name": "sfdc_slack",
+  "description": "",
+  "version": 4,
+  "private": true,
+  "concurrency": 1,
+  "code": {
+    "number": 0,
+    "provider": "clock",
+    "name": "scheduled_event",
+    "as": "ea2e73a5",
+    "title": null,
+    "description": "<span class=\"provider\">Trigger</span> every 5 minutes",
+    "keyword": "trigger",
+    "input": {
+      "time_unit": "minutes",
+      "trigger_every": "5"
+    },
+    "extended_input_schema": [
+      {
+        "control_type": "integer",
+        "default": "5",
+        "enforce_template_mode": true,
+        "extends_schema": true,
+        "hint": "Define repeating schedule. Enter whole numbers only.\n                        This field can be set to a minimum of 5 minutes.",
+        "label": "Trigger every",
+        "name": "trigger_every",
+        "optional": false,
+        "suffix": {
+          "text": "minutes"
+        },
+        "type": "string"
+      },
+      {
+        "control_type": "select",
+        "hint": "Select the timezone to use. Leave it blank to use <b>{{authUser.account_timezone}}</b>",
+        "label": "Timezone",
+        "name": "timezone",
+        "optional": true,
+        "pick_list": "timezone_id_global_pick_list",
+        "pick_list_connection_less": true,
+        "type": "string"
+      },
+      {
+        "control_type": "date_time",
+        "enforce_template_mode": true,
+        "extends_schema": true,
+        "hint": "Set date and time to start or leave blank to start immediately. <b>Once recipe has been run or tested, value cannot be changed.</b>",
+        "label": "Start after",
+        "name": "start_after",
+        "optional": true,
+        "parse_output": "date_time_conversion",
+        "since_field": true,
+        "type": "date_time",
+        "ignore_timezone": true,
+        "render_input": "date_time_conversion"
+      }
+    ],
+    "block": [
+      {
+        "number": 1,
+        "provider": "slack",
+        "name": "post_message_to_channel",
+        "as": "54cbd363",
+        "keyword": "action",
+        "toggleCfg": {
+          "channel": false
+        },
+        "input": {
+          "parse": "false",
+          "channel": "C082L9P1CHY",
+          "text": "#{_dp('{\"pill_type\":\"job_context\",\"path\":[\"user_name\"]}')}#{_dp('{\"pill_type\":\"job_context\",\"path\":[\"user_email\"]}')}#{_dp('{\"pill_type\":\"job_context\",\"path\":[\"user_id\"]}')}"
+        },
+        "uuid": "f7d72d9b-83bc-40b4-b5e6-b985f37540ee"
+      }
+    ],
+    "uuid": "9f7c7a8e-aae8-4ae2-90f4-708a5ee4e9e9",
+    "unfinished": false
+  },
+  "config": [
+    {
+      "keyword": "application",
+      "provider": "clock",
+      "skip_validation": false,
+      "account_id": null
+    },
+    {
+      "keyword": "application",
+      "provider": "slack",
+      "skip_validation": false,
+      "account_id": {
+        "zip_name": "Test_RLCM_Suhas/Connections/slack_rlcm.connection.json",
+        "name": "Slack_RLCM",
+        "folder": "Test_RLCM_Suhas/Connections"
+      }
+    }
+  ]
+}
