@@ -1,7 +1,7 @@
 {
   "name": "test cicd github",
   "description": "",
-  "version": 2,
+  "version": 3,
   "private": true,
   "concurrency": 1,
   "code": {
@@ -64,7 +64,7 @@
         "as": "f14539a2",
         "keyword": "action",
         "input": {
-          "repo_name": "workatotest",
+          "repo_name": "workato-devops-workbot",
           "branch_name": "dev"
         },
         "uuid": "3634173b-c6c9-4e74-b9fe-7f914d285315"
@@ -85,8 +85,8 @@
       "provider": "cicd_for_git_hub_v3_connector_865610_1730209886",
       "skip_validation": false,
       "account_id": {
-        "zip_name": "Test_RLCM_Suhas/Connections/cicd_for_github_v3_suhas.connection.json",
-        "name": "CICD for GitHub V3 Suhas",
+        "zip_name": "Test_RLCM_Suhas/Connections/cicd_for_github_redhat.connection.json",
+        "name": "CICD for GitHub redhat",
         "folder": "Test_RLCM_Suhas/Connections",
         "custom": true
       }

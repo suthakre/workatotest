@@ -1,5 +1,5 @@
 {
-  "name": "Oracle suhas",
+  "name": "test-opa-dev",
   "provider": "oracle",
   "secure_gateway_tunnel_name": "mpp-preprod-spoke-aws-us-east-1-dev",
   "root_folder": false
